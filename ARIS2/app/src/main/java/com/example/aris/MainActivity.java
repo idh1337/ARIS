@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -22,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private Toolbar toolbar;
     private Button scanIt;
+    private Button showScannedCodes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+        showScannedCodes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowScannedCodesActivity();
+            }
+
+
+        });
+
+    }
+    private void ShowScannedCodesActivity() {
+        Intent intent = new Intent(this, ScannedBarcodes.class);
+
+        startActivity(intent);
+
     }
     private void ScanBarcode() {
         new IntentIntegrator(this).initiateScan(); // `this` is the current Activity
@@ -95,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
         fab = (FloatingActionButton) findViewById(R.id.fab);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         scanIt = (Button)findViewById(R.id.scanBarcode);
+        showScannedCodes = (Button)findViewById(R.id.showCodes);
+
     }
 
 
